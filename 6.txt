@@ -1,0 +1,136 @@
+1.CSS水平对齐
+    对齐块元素：块元素是占用全部可用宽度的元素，并且在其前后都会换行。
+        p.center
+        {
+        width:70%;
+        margin:auto;（左右两边均等分配可用的外边距，即居中块元素）
+        }
+
+2.CSS尺寸
+    max-height设置最大高度。注意默认的overflow是visible。
+    min-width
+
+3.CSS分类（classification）
+    display:none不显示  inline行内元素 block块级元素
+    
+    改变光标形状：
+        cursor:auto光标  crosshair十字  default鼠标  pointer点击  move移动  等等等等
+
+    导航栏的制作
+        ul
+        {
+            list-style-type:none;  删掉小圆点
+            margin:0;
+            padding:0;
+            overflow:hidden;
+        }
+        li
+        {
+            float:left;
+        }
+        a:link,a:visited
+        {
+            display:block;   整个块都可以点击
+            width:120px;
+            font-weight:bold;
+            color:#FFFFFF;
+            background-color:#bebebe;
+            text-align:center;
+            padding:4px;
+            text-decoration:none;
+            text-transform:uppercase;
+        }
+        a:hover,a:active
+        {
+            background-color:#cc0000;
+        }
+
+4.实例：图片库的创建
+    div.img
+      {
+      margin:3px;
+      border:1px solid #bebebe;
+      height:auto;
+      width:auto;
+      float:left;
+      text-align:center;
+      }
+    div.img img
+      {
+      display:inline;
+      margin:3px;
+      border:1px solid #bebebe;
+      }
+    div.img a:hover img
+      {
+      border:1px solid #333333;
+      }
+    div.desc
+      {
+      text-align:center;
+      font-weight:normal;
+      width:150px;
+      font-size:12px;
+      margin:10px 5px 10px 5px;
+      }
+
+5.透明
+    img
+    {
+    opacity:0.4;
+    filter:alpha(opacity=40); /* 针对 IE8 以及更早的版本 */
+    }
+    img:hover  鼠标hover时
+    {
+    opacity:1.0;
+    filter:alpha(opacity=100); /* 针对 IE8 以及更早的版本 */
+    }
+
+    实例：透明框中的文本
+        div.background
+        {
+          width: 400px;
+          height: 266px;
+          background: url('/i/tulip_peach_blossom_w.jpg') no-repeat;
+          border: 1px solid black;
+        }
+
+        div.transbox
+        {
+          width: 338px;
+          height: 204px;
+          margin:30px;
+          background-color: #ffffff;
+          border: 1px solid black;
+          /* for IE */
+          filter:alpha(opacity=60);
+          /* CSS3 standard */
+          opacity:0.6;
+        }
+
+        div.transbox p
+        {
+          margin: 30px 40px;
+        }
+
+5.媒介类型
+    @media 规则使你有能力在相同的样式表中，使用不同的样式规则来针对不同的媒介。
+    下面这个例子中的样式告知浏览器在显示器上显示 14 像素的 Verdana 字体。但是假如页面需要被打印，将使用 10 个像素的 Times 字体。注意：font-weight 被设置为粗体，不论显示器还是纸媒介：
+        @media screen
+        {
+        p.test {font-family:verdana,sans-serif; font-size:14px}
+        }
+
+        @media print
+        {
+        p.test {font-family:times,serif; font-size:10px}
+        }
+
+        @media screen,print
+        {
+        p.test {font-weight:bold}
+        }
+
+CSS3
+HTML5
+Javascript

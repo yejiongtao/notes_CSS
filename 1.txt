@@ -1,0 +1,56 @@
+1.当同一个 HTML 元素被不止一个样式定义时，会使用哪个样式呢？（最下面优先级最高）
+    浏览器缺省设置
+    外部样式表
+    内部样式表（位于 <head> 标签内部）
+    内联样式（在 HTML 元素内部）
+
+2.一些语法：
+    p{color:#ff0000}
+    p{color:#f00}  （这样简写也是可以的）
+    p{color:rgb(255,0,0)}
+    p{color:rgb(100%,0,0)}
+
+    p{font-family:"sans serif";} （如果值是若干个单词，就要加引号）
+    body{font-family: Georgia, Palatino, serif;}
+
+    是否包含空格不会影响 CSS 在浏览器的工作效果，同样，与 XHTML 不同，CSS 对大小写不敏感。不过存在一个例外：如果涉及到与 HTML 文档一起工作的话，class 和 id 名称对大小写是敏感的。
+    
+    h1,h2,h3,h4,h5,h6 {
+        color: green;
+        }
+
+    对body进行设置之后，他的子标签像dd，dt什么的都会继承，但是有些浏览器是不支持继承的，所以还是所有都写上吧
+    
+3.派生选择器（上下文选择器）
+    li strong {
+        font-style: italic;
+        }
+    （只有li元素中的strong元素被设置）
+
+4.id选择器（为标有特定 id 的 HTML 元素指定特定的样式）
+    #red{color:red;}        （#red是某个元素的id）
+    #sidebar p{text-align:center;}
+    #sidebar h2{margin:0;}  （#sidebar是某个元素的id，意思是设置这个特定的元素中的p和h2元素的样式。id选择器结合上下文选择器）
+    div#sidebar{padding:10px;}  （注意！这个的意思是id为sidebar的div，由于id是唯一的，所以这个作用相当于#sidebar）
+                                （与类选择器作比较）
+
+5.类选择器（class）
+    .fancy(text-align:center;)  （fancy是类名）
+    .fancy p{color:#ff0}        （fancy类中的p元素）
+    p.fancy{...}                （fancy类的p元素）
+
+6.属性选择器
+    [title]{}               （设置所有带有title属性的元素）
+    [id=greeting]{}         （设置所有id="greeting"的元素。注意不用引号，其实有也是可以的）
+                            （一个以上的单词组成的属性值就要用引号）
+    input[type="button"]    （设置type为button的表单元素）
+
+    [attribute~=value]	匹配包含（整个单词）
+    [attribute|=value]	匹配开头（整个单词）
+    [attribute^=value]	匹配开头（字母即可）
+    [attribute$=value]	匹配结尾（字母即可）
+    [attribute*=value]	匹配包含（字母即可）
+
+7.注意
+    不要在属性值与他的单位之间插入空格。
+    如果外部样式表中规定了三个属性，内部样式表中重新规定了其中两个，那么剩下的一个还是会按照外部样式表中的来！

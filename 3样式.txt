@@ -1,0 +1,151 @@
+1.CSS链接
+    链接的特殊性在于能根据状态来设置样式： 
+        a:link - 普通的、未被访问的链接
+        a:visited - 用户已访问的链接
+        a:hover - 鼠标指针位于链接的上方
+        a:active - 链接被点击的时刻
+    注意：
+        a:hover 必须位于 a:link 和 a:visited 之后
+        a:active 必须位于 a:hover 之后（就是上面列出的顺序）
+    可以根据需要改变字体、大小、颜色、背景色、下划线等等
+    
+    注意：比如在a:link中设置了颜色，而a:hover中没有，那么hover时将会保持link中设置的那种颜色。
+    例子，一个扁平化的方框按钮：
+        a:link,a:visited
+        {
+            display:block;
+            font-weight:bold;
+            font-size:14px;
+            font-family:Verdana, Arial, Helvetica, sans-serif;
+            color:#FFFFFF;      （白色）
+            background-color:#98bf21;
+            width:120px;
+            text-align:center;
+            padding:4px;        （宽一点）
+            text-decoration:none;
+        }
+
+        a:hover,a:active
+        {
+            background-color:#7A991A;
+        }
+
+2.CSS列表
+    列表类型
+        ul{list-style-type:circle;}（有disc，none，circle，square）
+        ol{list-style-type:decimal;}
+            （decimal，decimal-leading-zero以0开头的数字，lower-roman，lower-alpha，lower-greek，lower-latin等等）
+
+    列表项图像
+        list-style-image:url(1.gif);
+        自定义图像作为标志。
+
+    可以把所有的属性放一起：
+        list-style:url(q.gif) inside;
+
+3.CSS表格
+    表格边框
+        table,td,th{border:1px solid blue;}
+        这样出来是双线条边框，因为表格和每个单元格都有自己的边框，要想单线条的话得用border-collapse
+
+    折叠边框
+        table{border-collapse:collapse;}（默认是seperate）
+        table,td,th{border:1px solid black;}
+    
+    高度与宽度
+        用height和width设置，可以对表格和单元格分别设置，绝对、相对长度都可以
+
+    表格文本对齐
+        text-align，vertical-align分别设置水平、垂直方向文字对齐。
+        对td、th设置
+    表格内边距
+        td,th{padding:10px;}
+    颜色
+        td{color:white;
+            background-color:green;}
+
+    table的其他属性
+        border-spacing:10px 50px;分别是水平、垂直的间隔，只给一个值的话就两个一样的间隔。
+        caption-side:top;标题的位置，bottom
+        empty-cells:hide;默认是show，即在空的单元格周围会绘制边框
+        table-layout:automatic;默认是automatic，列宽度由内容决定。fixed则列宽由设定的宽度决定，载入比较快。
+
+    一个例子：
+        #customers
+          {
+          font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+          width:100%;
+          border-collapse:collapse;
+          }
+
+        #customers td, #customers th 
+          {
+          font-size:1em;
+          border:1px solid #98bf21;
+          padding:3px 7px 2px 7px;
+          }
+
+        #customers th 
+          {
+          font-size:1.1em;
+          text-align:left;
+          padding-top:5px;
+          padding-bottom:4px;
+          background-color:#A7C942;
+          color:#ffffff;
+          }
+
+        #customers tr.alt td    （这里给某一行弄了个class，就可以直接设置整一行的东西了）
+          {
+          color:#000000;
+          background-color:#EAF2D3;
+          }
+
+4.CSS轮廓：元素周围的一圈线，可以用来突出元素
+    轮廓颜色
+        outline-color（除了一般的表示颜色的方法，还有一个invert，在背景颜色的基础上反转）
+    轮廓样式
+        outline-style:dotted;（dashed,solid等等）
+    轮廓宽度
+        outline-width:5px;（还可以是thin,medium,thick）
+    一个声明中设置
+        outline:red dotted thick;
+
+5.CSS框模型
+    一个元素从内到外：element，padding内边距，border边框，margin外边距
+    padding、border、margin默认都是0
+
+    关于padding
+        h1{padding:10px;}各边都是10px
+        h1{padding:10px 0.25em 2ex 20%;}分别是上、右、下、左。（单位还可以是cm）
+        padding-bottom、padding-top、padding-left、padding-right分别设置。
+    
+    关于border（可以对所有的元素设置边框属性）
+        边框绘于背景之上，所以对于间断的边框来说，空白部分会看到背景。
+        边框的样式：
+            border-style:outside;（outside是3D凸出来的效果，inside是凹下去）
+            border-style:dotted dashed solid outside;（分别设置上、右、下、左）
+            也可分别用border-top-style等来设置。
+            border-style:dashed; border-left-style:none;（左边无边框）
+        边框的宽度：
+            border-width可以用长度值，也可以是thin, medium, thick
+            四个值则是上右下左，两个值则相当于上下一样，左右一样。
+                三个值的话，最后的左跟右一样。
+            border-top-width
+            注意：必须声明了边框样式之后宽度才会生效！不然就是0
+        边框的颜色：
+            默认颜色是元素的前景色，即文字的颜色。
+            透明的颜色transparent，这样可以在需要的时候更改颜色使其可见。
+        所有的边框属性可以在一个声明之中。
+
+    关于margin
+        margin:10px 0px 10px 15px;跟padding差不多
+        实际中，有些元素，如段落，默认就是有margin的。
+
+    外边距合并
+        当两个垂直外边距相遇时，它们将形成一个外边距。
+            合并后的外边距的高度等于两个发生合并的外边距的高度中的较大者。
+        1.上面一个的bottom和下面一个的top
+        2.里面元素的top和外面元素的top
+        3.空元素本身的top和bottom
+        注意：只有普通文档流中块框的垂直外边距才会发生外边距合并。行内框、浮动框或绝对定位之间的外边距不会合并。

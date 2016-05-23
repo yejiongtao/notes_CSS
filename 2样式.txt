@@ -1,0 +1,130 @@
+1.背景（所有背景元素都不能继承）
+    背景色（默认的背景色是transparent）
+          （可以为所有元素设置背景色）
+          （background-color 不能继承，也就是说如果div在内部样式表中设为红色，里面的p在外部样式表中设为绿色，则事实上p是绿色的，及时实在外部设置的）
+          （如何设置某些文字的颜色：把那些文字放在一个span里面）
+        p{background-color:red;padding:10px}（设置内边距会让背景的区域变大）
+    
+    背景图像（默认是none，会显示上级的背景图像，但不是继承）
+        p.flower{background-image:url(/i/flower.jpg);}
+    
+    背景重复（默认就是repeat）
+        p
+        {
+            background-image:url(/flower.gif);
+            background-repeat:repeat;（repeat-x，repeat-y，no-repeat）
+        }
+
+    背景定位
+        p
+        {
+            background-image:url(/flower.gif);
+            background-repeat:no-repeat;
+            background-position:top right;
+                （center，top，bottom，right，left中选一个或两个，只选一个的时候另外一个默认是center，选两个的时候顺序没关系）
+            background-position:10% 10%;
+                （第一个为水平方向）
+            background-position:50px 100px;
+                （图片左上角距离元素左上角的距离）
+        }
+        （注意，某些浏览器要求background-attachment:fixed;时才能定位）
+
+    背景关联（默认是scroll）
+        如果文档比较长，那么当文档向下滚动时，背景图像也会随之滚动。当文档滚动到超过图像的位置时，图像就会消失。
+        background-attachment:fixed;
+
+    可以这样简化：
+        background: #ff0000 url(/i/eg_bg_03.gif) no-repeat fixed center;
+
+2.文本
+    缩进文本（文本第一行的缩进。首行！首行！）
+        应用于块级元素，不适用于行内元素（如果想把一个行内元素的第一行“缩进”，可以用左内边距或外边距创造这种效果。
+        p{text-indent:5em;}
+        p{text-indent:-5em;padding-left:5em;}
+            （长度可以是负数，使得其他行相对于第一行是缩进的。但是为了不超出窗口左边界，弄一个padding）
+        缩进长度可以是px，可以是百分比，百分比是指相对于父元素的百分比。
+
+        text-indent属性可以继承。
+            而且继承下来的是缩进的绝对长度，即就算之前是用百分比的也继承绝对长度。
+            如果有在子元素中规定了新的text-indent，则覆盖了继承下来的。并不累加！
+    
+    水平对齐
+        p{text-align:right;}（left，center，justify两端对齐，inherit继承父元素）
+        只是元素中文字的对齐方式，整个元素的位置是不变的。
+
+    字间隔
+        p.spread{word-spacing:normal;}（normal默认、相当于0，正负长度值，inherit）
+        字间隔是单词之间的间隔。
+      
+    字母间隔
+        h1{letter-spacing:0;}值与word-spacing类似。
+
+    字符转换
+        h1.uppercase{text-transform:uppercase;}（none,uppercase,lowercase,capitalize每个单词首字母大写）
+
+    文本装饰
+        text-decoration:none;(underline,overline,line-through,blink闪烁)
+        有些文本，例如链接，默认就有下划线，要去掉就得显式地设置text-decoration为none
+        可以一次设置多个值：
+            a.visited{text-decoration:underline overline;}
+    
+    处理空白符
+        white-space:normal（normal合并连续的多个空白符、换行将变成空格；
+                            pre效果相当于<pre>，但是字号不会像<pre>一样改变；
+                            nowrap打死也不换行，文字很多时也会直接放在一行；
+                            pre-wrap在pre的基础上允许自动换行;
+                            pre-line合并连续的空白符，但保留换行符。）
+    
+    文字方向
+        direction:ltr（默认）,rtl
+        对于行内元素，只有当 unicode-bidi 属性设置为 embed 或 bidi-override 时才会应用 direction 属性。
+
+    行高
+        p.small{line-height:90%;}（px大多数浏览器的默认行高是20px；直接用数值，默认的大概是1）
+
+3.CSS字体
+    字体系列：
+        CSS 中，有两种不同类型的字体系列名称：
+            通用字体系列 - 拥有相似外观的字体系统组合（比如 "Serif" 或 "Monospace"）
+            特定字体系列 - 具体的字体系列（比如 "Times" 或 "Courier"）
+        通用字体系列：
+            Serif：大小成比例，有上下短线
+            Sans-serif：大小成比例，无上下短线
+            Monospace：大小不成比例，即每个字母宽度一致，类似老式打印机打出来的
+            Cursive：模仿手写
+            Fantasy：其他
+
+        指定通用字体系列：
+            p{font-family:serif;}（好像一般浏览器通用字体系列都是支持的）
+        指定特定字体系列：
+            font-family:Georgia;（如果客户机子没有安装的话就只能按默认字体显示）
+        在指定字体后面提供一个通用字体系列，保证效果可控：（注意是逗号隔开！）
+            font-family:Georgia,serif;
+        按优先级排序：
+            font-family: Times, TimesNR, 'New Century Schoolbook',Georgia, 'New York', serif;
+        ***注意当属性值本身包含#或$之类的符号，也要用引号。
+
+    字体风格
+        font-style:normal;（italic斜体，oblique倾斜）
+        italic和oblique看起来差不多。
+
+    字体变形
+        用于设置小型大写字母
+        font-variant:small-caps;（默认为normal）
+
+    字体加粗
+        font-weight:normal;默认
+        font-weight:bold;加粗
+        font-weight:900;值为100-900，400相当于normal，700等价于bold
+    
+    字体大小
+        设置字体大小可以是相对值或者绝对值，用绝对值设置则有些浏览器中不能改变字体大小，不利于可用性。
+        1em等于父元素的字体大小。
+        可用性较高的方法：
+            body {font-size:100%;}
+            h1 {font-size:3.75em;}
+            h2 {font-size:2.5em;}
+            p {font-size:0.875em;}
+
+    可以把所有字体属性放在一个声明里面：
+        font:italic bold arial,sans-serif;
